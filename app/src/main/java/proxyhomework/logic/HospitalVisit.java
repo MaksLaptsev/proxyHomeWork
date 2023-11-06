@@ -2,22 +2,22 @@ package proxyhomework.logic;
 
 import proxyhomework.entity.Hospital;
 import proxyhomework.entity.Person;
-import proxyhomework.service.Service;
-import proxyhomework.service.serviceImpl.HospitalServiceImpl;
-import proxyhomework.service.serviceImpl.PersonServiceImpl;
+import proxyhomework.psevdoSpring.annotations.Autowired;
+import proxyhomework.service.HospitalService;
+import proxyhomework.service.PersonService;
 
 import java.util.Random;
 
 public class HospitalVisit {
-
-    private Service<Person> personService;
-    private Service<Hospital> hospitalService;
+    @Autowired
+    private PersonService<Person> personService;
+    @Autowired
+    private HospitalService<Hospital> hospitalService;
 
     public HospitalVisit() {
-        this(new PersonServiceImpl(),new HospitalServiceImpl());
     }
 
-    public HospitalVisit(Service<Person> personService, Service<Hospital> hospitalService) {
+    public HospitalVisit(PersonService<Person> personService, HospitalService<Hospital> hospitalService) {
         this.personService = personService;
         this.hospitalService = hospitalService;
     }

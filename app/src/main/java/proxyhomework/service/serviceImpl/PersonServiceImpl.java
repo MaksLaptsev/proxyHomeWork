@@ -2,22 +2,22 @@ package proxyhomework.service.serviceImpl;
 
 import proxyhomework.anotation.Log;
 import proxyhomework.anotation.MakeProxy;
-import proxyhomework.dao.Dao;
-import proxyhomework.dao.daoImpl.PersonDaoImpl;
+import proxyhomework.dao.PersonDao;
 import proxyhomework.entity.Person;
-import proxyhomework.service.Service;
+import proxyhomework.psevdoSpring.annotations.Autowired;
+import proxyhomework.service.PersonService;
 
 import java.util.List;
 
 @MakeProxy
-public class PersonServiceImpl implements Service<Person> {
-    private final Dao<Person> personDao;
+public class PersonServiceImpl implements PersonService<Person> {
+    @Autowired
+    private PersonDao<Person> personDao;
 
     public PersonServiceImpl() {
-        this(new PersonDaoImpl());
         System.out.println("Create PersonService");
     }
-    public PersonServiceImpl(Dao<Person> dao) {
+    public PersonServiceImpl(PersonDao<Person> dao) {
         this.personDao = dao;
     }
 

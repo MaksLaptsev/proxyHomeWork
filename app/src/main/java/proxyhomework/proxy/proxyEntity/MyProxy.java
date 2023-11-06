@@ -2,16 +2,23 @@ package proxyhomework.proxy.proxyEntity;
 
 import lombok.SneakyThrows;
 import proxyhomework.anotation.Log;
-import proxyhomework.service.Service;
+import proxyhomework.anotation.OriginalObject;
+import proxyhomework.anotation.ProxyClass;
+import proxyhomework.service.HospitalService;
+import proxyhomework.service.PersonService;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class MyProxy<T> implements Service<T> {
-    private Object object;
+@ProxyClass
+public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
+    @OriginalObject
+    private T object;
 
-    public MyProxy(Object object) {
+    public MyProxy() {
+    }
+    public MyProxy(T object) {
         this.object = object;
     }
 

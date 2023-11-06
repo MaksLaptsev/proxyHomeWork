@@ -3,30 +3,29 @@
  */
 package proxyhomework;
 
-import proxyhomework.entity.Hospital;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import proxyhomework.entity.Person;
 import proxyhomework.logic.HospitalVisit;
-import proxyhomework.proxy.ProxyFactory;
-import proxyhomework.service.Service;
-import proxyhomework.service.serviceImpl.HospitalServiceImpl;
+import proxyhomework.psevdoSpring.AppContext;
+import proxyhomework.psevdoSpring.AppRun;
+import proxyhomework.service.PersonService;
 import proxyhomework.service.serviceImpl.PersonServiceImpl;
 
-public class App {
-    public static void main(String[] args) {
-        ProxyFactory proxyFactory = new ProxyFactory(App.class.getPackage());
-        Service<Person> personService =  proxyFactory.getProxy(PersonServiceImpl.class);
-        Service<Hospital> hospitalService = proxyFactory.getProxy(HospitalServiceImpl.class);
 
-        HospitalVisit hospitalVisit = new HospitalVisit(personService,hospitalService);
+public class App {
+    public static void main(String[] args) throws JsonProcessingException {
+
+        AppContext context = AppRun.run(App.class.getPackageName());
+        HospitalVisit hospitalVisit = context.getObject(HospitalVisit.class);
 
         int i = 0;
         do {
             hospitalVisit.visit();
             i++;
-        }while (i <7);
+        }while (i <11);
 
-        Person p = personService.getById(3);
-        personService.deleteById(3);
-        personService.save(p);
+        PersonService<Person> personService = context.getObject(PersonServiceImpl.class);
+        personService.deleteById(4);
+
     }
 }

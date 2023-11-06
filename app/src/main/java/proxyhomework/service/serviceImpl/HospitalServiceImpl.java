@@ -2,22 +2,23 @@ package proxyhomework.service.serviceImpl;
 
 import proxyhomework.anotation.Log;
 import proxyhomework.anotation.MakeProxy;
-import proxyhomework.dao.Dao;
-import proxyhomework.dao.daoImpl.HospitalDaoImpl;
+import proxyhomework.dao.HospitalDao;
 import proxyhomework.entity.Hospital;
-import proxyhomework.service.Service;
+import proxyhomework.psevdoSpring.annotations.Autowired;
+import proxyhomework.service.HospitalService;
 
 import java.util.List;
 
 @MakeProxy
-public class HospitalServiceImpl implements Service<Hospital> {
-    private final Dao<Hospital> hospitalDao;
+public class HospitalServiceImpl implements HospitalService<Hospital> {
+    @Autowired
+    private HospitalDao<Hospital> hospitalDao;
 
     public HospitalServiceImpl() {
-        this(new HospitalDaoImpl());
+        System.out.println("Create HospitalServiceImpl");
     }
 
-    public HospitalServiceImpl(Dao<Hospital> hospitalDao) {
+    public HospitalServiceImpl(HospitalDao<Hospital> hospitalDao) {
         this.hospitalDao = hospitalDao;
     }
 

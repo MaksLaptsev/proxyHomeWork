@@ -2,10 +2,14 @@ package proxyhomework.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.databind.type.MapType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 public class LoadEntity<T> {
     private final ObjectMapper mapper;
@@ -14,15 +18,27 @@ public class LoadEntity<T> {
         this.mapper = new ObjectMapper();
     }
 
-    public List<T> getListOfObjects (String nameFile, Class<T> tClass){
+    public Collection<T> getListOfObjects (String nameFile, Class<T> tClass){
         URL path = LoadEntity.class.getClassLoader().getResource(nameFile);
         CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(ArrayList.class,tClass);
-        List<T> list = null;
+        Collection<T> collection = null;
         try {
-            list = mapper.readValue(path, collectionType);
+            collection = mapper.readValue(path, collectionType);
         } catch (IOException e) {
             System.out.println("Not found file with name: "+nameFile);
         }
-        return list;
+        return collection;
+    }
+
+    public Map<?,?> getListOfObjects (String nameFile, Class<? extends Map<?,?>> collectionClass, Class<?> keyClass, Class<?> valueClass){
+        TypeFactory factory = TypeFactory.defaultInstance();
+        MapType type = factory.constructMapType(collectionClass, keyClass, valueClass);
+        URL path = LoadEntity.class.getClassLoader().getResource(nameFile);
+        try {
+            return mapper.readValue(path, type);
+        } catch (IOException e) {
+            System.out.println("Not found file with name: "+nameFile);
+        }
+        return null;
     }
 }

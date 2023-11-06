@@ -1,19 +1,19 @@
 package proxyhomework.dao.daoImpl;
 
-import proxyhomework.dao.Dao;
+import proxyhomework.dao.PersonDao;
 import proxyhomework.entity.Person;
+import proxyhomework.psevdoSpring.annotations.InjectMap;
 import proxyhomework.utils.LoadEntity;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class PersonDaoImpl implements Dao<Person> {
-
-    private final Map<Integer,Person> personMap;
+public class PersonDaoImpl implements PersonDao<Person> {
+    @InjectMap
+    private Map<Integer,Person> personMap;
 
     public PersonDaoImpl() {
-        this("JsonPersonsList.json");
     }
 
     public PersonDaoImpl(String fileName){

@@ -21,7 +21,7 @@ public class ProxyFactory {
     }
 
     public <T> T getProxy(Class<T> implClass){
-        MyProxy<T> proxy = new MyProxy<>(beans.get(implClass));
+        MyProxy<T> proxy = new MyProxy<>((T) beans.get(implClass));
 
         return (T)proxy;
     }
