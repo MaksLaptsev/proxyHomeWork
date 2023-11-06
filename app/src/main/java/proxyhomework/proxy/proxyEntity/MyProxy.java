@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class MyProxy<T> implements Service<T> {
     private Object object;
 
@@ -22,8 +23,8 @@ public class MyProxy<T> implements Service<T> {
         m.setAccessible(true);
 
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\" will be start, ");
-            System.out.println("With params: "+ Arrays.toString(new int[]{id})+" from Class: "+object.getClass().getName());
+            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
+            System.out.println("With params: "+ Arrays.toString(new int[]{id})+" from Class: "+this.getClass().getName());
             return (T) m.invoke(object,id);
         }
         return (T) m.invoke(object,id);
@@ -37,7 +38,7 @@ public class MyProxy<T> implements Service<T> {
         m.setAccessible(true);
 
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\" will be start, ");
+            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
             System.out.println("With params: "+" from Class: "+object.getClass().getName());
             return (List<T>) m.invoke(object);
         }
@@ -51,7 +52,7 @@ public class MyProxy<T> implements Service<T> {
         Method m = object.getClass().getMethod(methodName,int.class);
         m.setAccessible(true);
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\" will be start, ");
+            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
             System.out.println("With params: "+Arrays.toString(new int[]{id})+" from Class: "+object.getClass().getName());
             m.invoke(object,id);
         }
@@ -64,7 +65,7 @@ public class MyProxy<T> implements Service<T> {
         Method m = object.getClass().getMethod(methodName,o.getClass());
         m.setAccessible(true);
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\" will be start, ");
+            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
             System.out.println("With params: "+Arrays.toString(new Object[]{o})+" from Class: "+object.getClass().getName());
             m.invoke(object,o);
         }

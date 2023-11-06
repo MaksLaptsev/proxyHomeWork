@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unchecked")
 public class ProxyFactory {
 
     private Map<Class<?>,Object> beans;
