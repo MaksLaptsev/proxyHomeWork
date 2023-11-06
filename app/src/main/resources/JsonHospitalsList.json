@@ -1,0 +1,12 @@
+[{"id":1,"name":"St. John's Hospital","address":"123 Main Street"},
+  {"id":2,"name":"Mercy Medical Center","address":"456 Oak Avenue"},
+  {"id":3,"name":"Riverside Hospital","address":"789 Elm Drive"},
+  {"id":4,"name":"Grace General Hospital","address":"101 Pine Lane"},
+  {"id":5,"name":"Memorial Hospital","address":"202 Maple Road"},
+  {"id":6,"name":"Unity Health Center","address":"303 Birch Court"},
+  {"id":7,"name":"Oakridge Medical Center","address":"404 Cedar Circle"},
+  {"id":8,"name":"Hope Community Hospital","address":"505 Spruce Way"},
+  {"id":9,"name":"Maplewood Clinic","address":"606 Fir Boulevard"},
+  {"id":10,"name":"Harmony Regional Hospital","address":"707 Redwood Place"},
+  {"id":11,"name":"Sunrise Health Center","address":"808 Willow Street"},
+  {"id":12,"name":"Greenfield Memorial Hospital","address":"909 Pine Avenue"}]
