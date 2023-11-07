@@ -25,6 +25,7 @@ public class App {
             i++;
         }while (i <7);
 
+        System.out.println("----------------");
         Person p = personService.getById(3);
         personService.deleteById(3);
         personService.save(p);
