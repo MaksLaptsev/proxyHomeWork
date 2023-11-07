@@ -6,6 +6,9 @@ import proxyhomework.psevdoSpring.annotations.Autowired;
 import proxyhomework.psevdoSpring.configurator.ObjectConfig;
 import java.lang.reflect.Field;
 
+/**
+ * Конфигуратор для полей с аннотацией Autowired, инициализирует соответствующие поля
+ */
 public class AutowiredAnnotationConfig implements ObjectConfig {
     @Override
     @SneakyThrows

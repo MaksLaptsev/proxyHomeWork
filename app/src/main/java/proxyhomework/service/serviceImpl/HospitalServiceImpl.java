@@ -18,9 +18,6 @@ public class HospitalServiceImpl implements HospitalService<Hospital> {
         System.out.println("Create HospitalServiceImpl");
     }
 
-    public HospitalServiceImpl(HospitalDao<Hospital> hospitalDao) {
-        this.hospitalDao = hospitalDao;
-    }
 
     @Override
     @Log

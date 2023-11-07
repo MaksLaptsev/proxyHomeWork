@@ -10,9 +10,17 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * MyProxy - класс, который выступает в роли прокси класса. Для работы необходимо что бы он реализовывал все интерфейсы,
+ * которые реализовывает проксируемый класс.
+ * @param <T>
+ */
 @SuppressWarnings("unchecked")
 @ProxyClass
 public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
+    /**
+     * @OriginalObject - маркер, указывающий на оригинальный(проксируемый) объект
+     */
     @OriginalObject
     private T object;
 

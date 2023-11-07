@@ -13,6 +13,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Конфигуратор для полей с аннотацией InjectMap, инициализирует соответствующие поля
+ */
 @SuppressWarnings("unchecked")
 public class InjectMapAnnotationConfig implements ObjectConfig {
     private Map<String,String> propertiesMap;

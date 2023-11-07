@@ -7,6 +7,9 @@ import proxyhomework.psevdoSpring.AppContext;
 import proxyhomework.psevdoSpring.configurator.ObjectConfig;
 import java.lang.reflect.Field;
 
+/**
+ * Конфигуратор для аннотации MakeProxy, классы промаркированные данной аннотацией будут обернуты в класс {@link proxyhomework.proxy.proxyEntity.MyProxy}
+ */
 @SuppressWarnings("unchecked")
 public class MakeProxyAnnotationConfig implements ObjectConfig {
     @Override

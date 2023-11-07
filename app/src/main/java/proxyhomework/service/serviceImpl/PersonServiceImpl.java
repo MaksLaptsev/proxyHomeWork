@@ -17,9 +17,6 @@ public class PersonServiceImpl implements PersonService<Person> {
     public PersonServiceImpl() {
         System.out.println("Create PersonService");
     }
-    public PersonServiceImpl(PersonDao<Person> dao) {
-        this.personDao = dao;
-    }
 
     @Override
     @Log

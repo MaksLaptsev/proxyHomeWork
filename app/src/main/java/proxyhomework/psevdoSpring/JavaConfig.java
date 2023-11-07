@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * JavaConfig при создании сканирует пакет, ищет все Class.class
+ */
 @SuppressWarnings("unchecked")
 public class JavaConfig implements Config{
 
@@ -19,11 +22,22 @@ public class JavaConfig implements Config{
         this.classMap = classMap;
         this.reflections = new Reflections(packageName);
     }
+
+    /**
+     * @param packageName - имя пакета, который необходимо просканировать(обычно - корень приложения)
+     */
     public JavaConfig(String packageName) {
         this.classMap = new HashMap<>();
         this.reflections = new Reflections(packageName);
     }
 
+    /**
+     * Ищет класс, который реализует переданный интерфейс Class<T> clazz
+     * В случае, если необходимый класс является ProxyClass - помещается в отделью коллекцию
+     * @param clazz - Интерфейс(как правило), реализацию которого необходимо найти
+     * @return - Возвращает класс, который реализует нужный нам интерфейс
+     * @param <T> - дженерик
+     */
     @Override
     public <T> Class<? extends T> getImplClass(Class<T> clazz) {
         return classMap.computeIfAbsent(clazz, aClass -> {

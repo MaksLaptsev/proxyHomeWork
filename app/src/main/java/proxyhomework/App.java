@@ -6,6 +6,7 @@ package proxyhomework;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import proxyhomework.entity.Person;
 import proxyhomework.logic.HospitalVisit;
+import proxyhomework.logic.NumberWork;
 import proxyhomework.psevdoSpring.AppContext;
 import proxyhomework.psevdoSpring.AppRun;
 import proxyhomework.service.PersonService;
@@ -13,7 +14,7 @@ import proxyhomework.service.serviceImpl.PersonServiceImpl;
 
 
 public class App {
-    public static void main(String[] args) throws JsonProcessingException {
+    public static void main(String[] args) {
 
         AppContext context = AppRun.run(App.class.getPackageName());
         HospitalVisit hospitalVisit = context.getObject(HospitalVisit.class);
@@ -26,6 +27,9 @@ public class App {
 
         PersonService<Person> personService = context.getObject(PersonServiceImpl.class);
         personService.deleteById(4);
+
+        NumberWork numberWork = context.getObject(NumberWork.class);
+        numberWork.printNumber();
 
     }
 }

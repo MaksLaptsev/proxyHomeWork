@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
+/**
+ * Класс для загрузки информации об entity из json файла и последующей конвертации их в коллекцию
+ * @param <T> - тип entity
+ */
 public class LoadEntity<T> {
     private final ObjectMapper mapper;
 
