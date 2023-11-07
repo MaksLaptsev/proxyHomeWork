@@ -3,7 +3,6 @@
  */
 package proxyhomework;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import proxyhomework.entity.Person;
 import proxyhomework.logic.HospitalVisit;
 import proxyhomework.logic.NumberWork;
