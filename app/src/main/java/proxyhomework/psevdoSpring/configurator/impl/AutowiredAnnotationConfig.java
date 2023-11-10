@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 public class AutowiredAnnotationConfig implements ObjectConfig {
     @Override
     @SneakyThrows
-    public void config(Object object, AppContext context) {
+    public Object config(Object object, AppContext context) {
         for (Field field : object.getClass().getDeclaredFields()) {
             if (field.isAnnotationPresent(Autowired.class)){
                 field.setAccessible(true);
@@ -20,5 +20,6 @@ public class AutowiredAnnotationConfig implements ObjectConfig {
                 field.set(object,o);
             }
         }
+        return object;
     }
 }

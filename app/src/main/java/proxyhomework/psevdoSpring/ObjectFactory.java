@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Фабрика по созданию объектов
  */
+@SuppressWarnings("unchecked")
 public class ObjectFactory {
     private List<ObjectConfig> configs = new ArrayList<>();
     private AppContext context;
@@ -38,7 +39,9 @@ public class ObjectFactory {
     public <T> T createObject(Class<T> clazz){
         T t = clazz.getDeclaredConstructor().newInstance();
 
-        configs.forEach(objectConfig -> objectConfig.config(t,context));
+        for (ObjectConfig config : configs) {
+            t = (T) config.config(t,context);
+        }
 
         return t;
     }

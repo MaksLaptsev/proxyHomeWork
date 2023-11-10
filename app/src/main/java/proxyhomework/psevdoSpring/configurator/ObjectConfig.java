@@ -6,5 +6,5 @@ import proxyhomework.psevdoSpring.AppContext;
  * Конфигуратор для созданных объектов
  */
 public interface ObjectConfig {
-    void config(Object object, AppContext context);
+    Object config(Object object, AppContext context);
 }

@@ -1,7 +1,6 @@
 package proxyhomework.psevdoSpring;
 
 import org.reflections.Reflections;
-
 import java.util.Set;
 
 public interface Config {

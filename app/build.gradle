@@ -16,6 +16,7 @@ ext{
     lombokVersion = '1.18.24'
     jacksonVersion = '2.14.2'
     reflectionsVersion = '0.10.2'
+    log4jVersion = '1.2.12'
 }
 
 repositories {
@@ -27,6 +28,7 @@ dependencies {
     implementation "org.reflections:reflections:$reflectionsVersion"
     implementation "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
     implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion"
+    implementation "log4j:log4j:$log4jVersion"
 
     annotationProcessor  "org.projectlombok:lombok:$lombokVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"

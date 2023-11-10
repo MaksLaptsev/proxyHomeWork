@@ -25,7 +25,7 @@ public class InjectAnnotationConfig implements ObjectConfig {
 
     @Override
     @SneakyThrows
-    public void config(Object object, AppContext context) {
+    public Object config(Object object, AppContext context) {
         Field[] fields = object.getClass().getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
@@ -37,6 +37,7 @@ public class InjectAnnotationConfig implements ObjectConfig {
                 parseToFieldValueAndSet(field,valueToParse, object);
             }
         }
+        return object;
     }
 
     @SneakyThrows

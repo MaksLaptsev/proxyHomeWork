@@ -30,7 +30,7 @@ public class InjectMapAnnotationConfig implements ObjectConfig {
 
     @Override
     @SneakyThrows
-    public void config(Object object, AppContext context) {
+    public Object config(Object object, AppContext context) {
         for (Field field : object.getClass().getDeclaredFields()){
             field.setAccessible(true);
             InjectMap injectMap = field.getAnnotation(InjectMap.class);
@@ -45,5 +45,6 @@ public class InjectMapAnnotationConfig implements ObjectConfig {
                 field.set(object,new LoadEntity<>().getListOfObjects(valueName,(Class)field.getType(),keyClass,entityClass));
             }
         }
+        return object;
     }
 }

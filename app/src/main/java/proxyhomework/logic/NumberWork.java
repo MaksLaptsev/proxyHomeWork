@@ -8,7 +8,7 @@ public class NumberWork {
     private Number number;
 
     public void printNumber(){
-        System.out.println(number.getNumber() + " "+number.getName());
+        System.out.println("\n"+number.getNumber() + " "+number.getName());
         System.out.println(number.getDoubleNumber()+ " is not a bad number");
         System.out.println("boolean = "+number.isTrue());
     }

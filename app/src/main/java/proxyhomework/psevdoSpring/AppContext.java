@@ -40,12 +40,8 @@ public class AppContext {
 
         T t = objectFactory.createObject(implClass);
 
+        cacheMap.put(tClass,t);
 
-        if (!cacheMap.containsKey(tClass)){
-            cacheMap.put(tClass,t);
-        } else {
-            t = (T) cacheMap.get(tClass);
-        }
         return t;
     }
 

@@ -1,6 +1,7 @@
 package proxyhomework.proxy.proxyEntity;
 
 import lombok.SneakyThrows;
+import org.apache.log4j.Logger;
 import proxyhomework.anotation.Log;
 import proxyhomework.anotation.OriginalObject;
 import proxyhomework.anotation.ProxyClass;
@@ -18,17 +19,12 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 @ProxyClass
 public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
+    private Logger log = Logger.getLogger(MyProxy.class);
     /**
      * @OriginalObject - маркер, указывающий на оригинальный(проксируемый) объект
      */
     @OriginalObject
     private T object;
-
-    public MyProxy() {
-    }
-    public MyProxy(T object) {
-        this.object = object;
-    }
 
     @Override
     @SneakyThrows
@@ -38,11 +34,12 @@ public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
         m.setAccessible(true);
 
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
-            System.out.println("With params: "+ Arrays.toString(new int[]{id})+" from Class: "+this.getClass().getName());
-            return (T) m.invoke(object,id);
-        }
-        return (T) m.invoke(object,id);
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, \n"
+                    +"With params: "+ Arrays.toString(new int[]{id})+" from Class: "+this.getClass().getName());
+            Object o =  m.invoke(object,id);
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+"  has completed execution");
+            return (T)o;
+        } else return (T) m.invoke(object,id);
     }
 
     @Override
@@ -53,11 +50,12 @@ public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
         m.setAccessible(true);
 
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
-            System.out.println("With params: "+" from Class: "+object.getClass().getName());
-            return (List<T>) m.invoke(object);
-        }
-        return (List<T>) m.invoke(object);
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, \n"
+                    +"With params: "+" from Class: "+object.getClass().getName());
+            List<T> list = (List<T>) m.invoke(object);
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+"  has completed execution");
+            return list;
+        }else return (List<T>) m.invoke(object);
     }
 
     @Override
@@ -67,10 +65,11 @@ public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
         Method m = object.getClass().getMethod(methodName,int.class);
         m.setAccessible(true);
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
-            System.out.println("With params: "+Arrays.toString(new int[]{id})+" from Class: "+object.getClass().getName());
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, \n"+
+                    "With params: "+Arrays.toString(new int[]{id})+" from Class: "+object.getClass().getName());
             m.invoke(object,id);
-        }
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+"  has completed execution");
+        }else m.invoke(object,id);
     }
 
     @Override
@@ -80,9 +79,10 @@ public class MyProxy<T> implements HospitalService<T>, PersonService<T> {
         Method m = object.getClass().getMethod(methodName,o.getClass());
         m.setAccessible(true);
         if(m.isAnnotationPresent(Log.class)){
-            System.out.print("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, ");
-            System.out.println("With params: "+Arrays.toString(new Object[]{o})+" from Class: "+object.getClass().getName());
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+" will be start, \n"
+                    +"With params: "+Arrays.toString(new Object[]{o})+" from Class: "+object.getClass().getName());
             m.invoke(object,o);
-        }
+            log.info("Method with name \""+methodName+"\""+" owner: "+object.getClass().getSimpleName()+"  has completed execution");
+        }else  m.invoke(object,o);
     }
 }

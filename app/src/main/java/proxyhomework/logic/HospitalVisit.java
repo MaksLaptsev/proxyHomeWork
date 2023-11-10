@@ -32,11 +32,11 @@ public class HospitalVisit {
         Hospital h = hospitalService.getById(hospitalID);
 
         if (p==null){
-            System.out.println("No one came to the hospital \n");
+            System.out.println("\nNo one came to the hospital \n");
         } else if (h==null) {
-            System.out.println("Person didn't find a hospital \n");
+            System.out.println("\nPerson didn't find a hospital \n");
         }else {
-            System.out.println(p.getName()+ " visited "+h.getName()+" at "+h.getAddress()+"\n");
+            System.out.println("\n"+p.getName()+ " visited "+h.getName()+" at "+h.getAddress()+"\n");
         }
     }
 }
