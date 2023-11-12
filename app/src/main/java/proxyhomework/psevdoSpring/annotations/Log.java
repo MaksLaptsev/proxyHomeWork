@@ -1,4 +1,4 @@
-package proxyhomework.anotation;
+package proxyhomework.psevdoSpring.annotations;
 
 
 import java.lang.annotation.ElementType;

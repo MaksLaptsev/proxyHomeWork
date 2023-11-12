@@ -1,8 +1,8 @@
 package proxyhomework.psevdoSpring.configurator.impl;
 
 import lombok.SneakyThrows;
-import proxyhomework.anotation.MakeProxy;
-import proxyhomework.anotation.OriginalObject;
+import proxyhomework.psevdoSpring.annotations.MakeProxy;
+import proxyhomework.psevdoSpring.annotations.OriginalObject;
 import proxyhomework.psevdoSpring.AppContext;
 import proxyhomework.psevdoSpring.configurator.ObjectConfig;
 import java.lang.reflect.Field;

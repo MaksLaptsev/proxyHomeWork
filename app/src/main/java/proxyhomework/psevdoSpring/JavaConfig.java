@@ -1,7 +1,7 @@
 package proxyhomework.psevdoSpring;
 
 import org.reflections.Reflections;
-import proxyhomework.anotation.ProxyClass;
+import proxyhomework.psevdoSpring.annotations.ProxyClass;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

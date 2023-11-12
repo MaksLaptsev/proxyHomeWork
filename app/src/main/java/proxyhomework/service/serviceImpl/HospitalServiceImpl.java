@@ -1,7 +1,7 @@
 package proxyhomework.service.serviceImpl;
 
-import proxyhomework.anotation.Log;
-import proxyhomework.anotation.MakeProxy;
+import proxyhomework.psevdoSpring.annotations.Log;
+import proxyhomework.psevdoSpring.annotations.MakeProxy;
 import proxyhomework.dao.HospitalDao;
 import proxyhomework.entity.Hospital;
 import proxyhomework.psevdoSpring.annotations.Autowired;

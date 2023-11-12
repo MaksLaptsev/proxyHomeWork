@@ -2,9 +2,9 @@ package proxyhomework.proxy.proxyEntity;
 
 import lombok.SneakyThrows;
 import org.apache.log4j.Logger;
-import proxyhomework.anotation.Log;
-import proxyhomework.anotation.OriginalObject;
-import proxyhomework.anotation.ProxyClass;
+import proxyhomework.psevdoSpring.annotations.Log;
+import proxyhomework.psevdoSpring.annotations.OriginalObject;
+import proxyhomework.psevdoSpring.annotations.ProxyClass;
 import proxyhomework.service.HospitalService;
 import proxyhomework.service.PersonService;
 import java.lang.reflect.Method;
