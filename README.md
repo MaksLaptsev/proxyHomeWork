@@ -6,10 +6,10 @@
 - Для реализации аннотации необходимо использовать паттерн "Прокси", поэтому для логирования класс должен иметь интерфейс.
 - Использовать какие либо готовые решения( java.lang.reflect.Proxy.newProxyInstance(), CGlib и т.д.) нельзя.
 ## Что было сделано
--  [MyProxy](https://github.com/MaksLaptsev/proxyHomeWork/blob/8fbb1484d68f15201cc1ff6434ab87fa94152c38/app/src/main/java/proxyhomework/proxy/proxyEntity/MyProxy.java#L20) класс, выступающий в роли прокси, реализует тот же интерфейс, что и оригинальный(проксируемый) класс, так же имеет в себе ссылку на оригинальный обьект. В случае, если метод у проксируемого класса имеет аннотацию @Log - выводит в лог информацию об начале и завершении метода + параметры (с указанием названия класса и метода).
+-  [MyProxy](https://github.com/MaksLaptsev/proxyHomeWork/blob/226954e36fe2d6c6b687b4f750ad2fab9647ef76/app/src/main/java/proxyhomework/proxy/proxyEntity/MyProxy.java#L21) класс, выступающий в роли прокси, реализует тот же интерфейс, что и оригинальный(проксируемый) класс, так же имеет в себе ссылку на оригинальный обьект. В случае, если метод у проксируемого класса имеет аннотацию @Log - выводит в лог информацию об начале и завершении метода + параметры (с указанием названия класса и метода).
 -  [AppRun](https://github.com/MaksLaptsev/proxyHomeWork/blob/b12ea59c0a640a1fc90377f1ab604ba568c38544/app/src/main/java/proxyhomework/psevdoSpring/AppRun.java#L8) данный класс запускает инициализацию и настройку JavaConfig, AppContext и ObjectFactory
--  [JavaConfig](https://github.com/MaksLaptsev/proxyHomeWork/blob/b12ea59c0a640a1fc90377f1ab604ba568c38544/app/src/main/java/proxyhomework/psevdoSpring/JavaConfig.java#L14) сканирует пакет(обычно корневой приложения) с помощью org.Reflections, по мере необходимости отдает класс, который реализует переданный интерфейс(если передать класс, то вернет его же),реализацию которого нужно отдать.
--  [ObjectFactory](https://github.com/MaksLaptsev/proxyHomeWork/blob/b12ea59c0a640a1fc90377f1ab604ba568c38544/app/src/main/java/proxyhomework/psevdoSpring/ObjectFactory.java#L12) - фабрика объектов. Занимается созданием и конфигурацией запрашиваемых объектов. Создание объекта происходит посредством вызовама метода `createObject`
+-  [JavaConfig](https://github.com/MaksLaptsev/proxyHomeWork/blob/226954e36fe2d6c6b687b4f750ad2fab9647ef76/app/src/main/java/proxyhomework/psevdoSpring/JavaConfig.java#L14) сканирует пакет(обычно корневой приложения) с помощью org.Reflections, по мере необходимости отдает класс, который реализует переданный интерфейс(если передать класс, то вернет его же),реализацию которого нужно отдать.
+-  [ObjectFactory](https://github.com/MaksLaptsev/proxyHomeWork/blob/226954e36fe2d6c6b687b4f750ad2fab9647ef76/app/src/main/java/proxyhomework/psevdoSpring/ObjectFactory.java#L13) - фабрика объектов. Занимается созданием и конфигурацией запрашиваемых объектов. Создание объекта происходит посредством вызовама метода `createObject`
  ```java
     public <T> T createObject(Class<T> clazz){
         T t = clazz.getDeclaredConstructor().newInstance();
@@ -24,7 +24,7 @@
     где clazz - класс, объект которого необходимо создать.
     если класс имеет аннтоацию @MakeProxy, то объект будет обернут в MyProxy.class
     
-  - [AppContext](https://github.com/MaksLaptsev/proxyHomeWork/blob/b12ea59c0a640a1fc90377f1ab604ba568c38544/app/src/main/java/proxyhomework/psevdoSpring/AppContext.java#L12) - используется для получения готовых объектов, и их кеширования, от ObjectFactory. Получение объекта через вызов метода `getObject(Class<T> tClass)`, если `tClass` является интерфейсом, то запрашивает у `JavaConfig` класс, который реализует этот интерфейс, далее отдает класс фабрике, получает готовый объект, после его кеширует.
+  - [AppContext](https://github.com/MaksLaptsev/proxyHomeWork/blob/226954e36fe2d6c6b687b4f750ad2fab9647ef76/app/src/main/java/proxyhomework/psevdoSpring/AppContext.java#L12) - используется для получения готовых объектов, и их кеширования, от ObjectFactory. Получение объекта через вызов метода `getObject(Class<T> tClass)`, если `tClass` является интерфейсом, то запрашивает у `JavaConfig` класс, который реализует этот интерфейс, далее отдает класс фабрике, получает готовый объект, после его кеширует.
      ```java
     public <T> T getObject(Class<T> tClass){
         if (cacheMap.containsKey(tClass)){
